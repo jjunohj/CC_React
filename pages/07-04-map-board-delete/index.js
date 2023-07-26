@@ -1,4 +1,4 @@
-import { useQuery, gql, useMutation } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import styled from "@emotion/styled";
 
 const FETCH_BOARDS = gql`

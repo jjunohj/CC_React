@@ -1,6 +1,5 @@
 import { useQuery, gql } from "@apollo/client";
 import styled from "@emotion/styled";
-import { Col } from "antd";
 
 const FETCH_BOARD = gql`
   query fetchBoards {
