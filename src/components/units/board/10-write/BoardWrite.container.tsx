@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import BoardWriteUI from "./BoardWrite.presenter";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
 import { useRouter } from "next/router";
@@ -35,7 +35,13 @@ export default function BoardWrite(props: IProps) {
   };
 
   const onClickUpdate = async () => {
-    const myvariables = {
+    interface IMyvariables {
+      number: number;
+      writer?: string;
+      title?: string;
+      contents?: string;
+    }
+    const myvariables: IMyvariables = {
       number: Number(router.query.number),
     };
     if (writer) myvariables.writer = writer;
@@ -53,21 +59,21 @@ export default function BoardWrite(props: IProps) {
     router.push(`/10-01-typescript-boards/${result.data?.updateBoard.number}`);
   };
 
-  const onChangeWriter = (event) => {
+  const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.value && title && contents) {
       setMycolor(true);
     }
     setWriter(event.target.value);
   };
 
-  const onChangeTitle = (event) => {
+  const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
     if (writer && event.target.value && contents) {
       setMycolor(true);
     }
     setTitle(event.target.value);
   };
 
-  const onChangeContents = (event) => {
+  const onChangeContents = (event: ChangeEvent<HTMLInputElement>) => {
     if (writer && title && event.target.value) {
       setMycolor(true);
     }
