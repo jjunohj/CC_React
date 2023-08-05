@@ -3,13 +3,9 @@ import { ChangeEvent, useState } from "react";
 import BoardWriteUI from "./BoardWrite.presenter";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
 import { useRouter } from "next/router";
+import { IBoardWriteProps, IMyvariables } from "./BoardWrite.types";
 
-interface IProps {
-  isEdit: boolean;
-  data?: any;
-}
-
-export default function BoardWrite(props: IProps) {
+export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
   const [mycolor, setMycolor] = useState(false);
   // 자바스크립트 영역
@@ -35,12 +31,6 @@ export default function BoardWrite(props: IProps) {
   };
 
   const onClickUpdate = async () => {
-    interface IMyvariables {
-      number: number;
-      writer?: string;
-      title?: string;
-      contents?: string;
-    }
     const myvariables: IMyvariables = {
       number: Number(router.query.number),
     };
